@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+  - name: Gather service facts
+    service_facts:
+
+  - name: Check if open-ssh is running
+    assert:
+      that: "'ssh' in ansible_facts.services"
+      fail_msg: "Il servizio open-ssh non è in esecuzione"
+      success_msg: "Il servizio open-ssh è in esecuzione"
+
+  - name: Check if nginx is running
+    assert:
+      that: "'nginx' in ansible_facts.services"
+      fail_msg: "Il servizio nginx non è in esecuzione"
+      success_msg: "Il servizio nginx è in esecuzione"
+...
